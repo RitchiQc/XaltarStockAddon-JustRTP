@@ -1,0 +1,37 @@
+# Messages en Francais
+prefix: "&8[&6RTP Stock&8] &r"
+
+# Commandes joueur
+stock-self: "&7Tu as &e%stock%&7/&e%limit% &7RTP gratuits."
+stock-other: "&e%player% &7a &e%stock%&7/&e%limit% &7RTP gratuits."
+give-success: "&7Tu as envoye &e%amount% &7RTP a &e%target%&7."
+give-received: "&e%player% &7t'a envoye &e%amount% &7RTP gratuits."
+give-not-enough: "&cTu n'as pas assez de RTP gratuits."
+give-cooldown: "&cTu dois attendre &e%seconds% &csecondes avant de pouvoir envoyer des RTP."
+give-self: "&cTu ne peux pas t'envoyer des RTP a toi-meme."
+give-invalid-amount: "&cLe nombre de RTP doit etre superieur a 0."
+give-target-offline: "&cLe joueur &e%target% &cn'est pas en ligne."
+give-target-full: "&cLe joueur &e%target% &ca atteint sa limite de RTP."
+
+# Premiere connexion
+first-join: "&aBienvenue ! Tu recois &e%amount% RTP gratuits &apour bien demarrer."
+
+# RTP utilise
+rtp-used-free: "&aTu as utilise 1 RTP gratuit. Restant: &e%remaining%"
+rtp-no-stock: "&cTu n'as plus de RTP gratuits. Le cout normal s'applique."
+
+# Commandes staff
+staff-stock: "&e%player% &7a &e%stock%&7/&e%limit% &7RTP gratuits."
+staff-add-success: "&7Tu as ajoute &e%amount% &7RTP a &e%player%&7. Nouveau stock: &e%stock%&7/&e%limit%"
+staff-remove-success: "&7Tu as retire &e%amount% &7RTP a &e%player%&7. Nouveau stock: &e%stock%&7/&e%limit%"
+staff-set-success: "&7Tu as defini le stock de &e%player% &7a &e%amount%&7/&e%limit%"
+staff-target-offline: "&cLe joueur &e%player% &cn'est pas en ligne."
+staff-invalid-amount: "&cLe nombre doit etre superieur ou egal a 0."
+staff-limit-reached: "&cImpossible: la limite de &e%player% &cest &e%limit%&c."
+
+# Erreurs generales
+no-permission: "&cTu n'as pas la permission d'utiliser cette commande."
+player-only: "&cCette commande ne peut etre utilisee que par un joueur."
+usage-give: "&cUsage: /rtpgive <nombre> <joueur>"
+usage-staff: "&cUsage: /rtpstaff <stock|add|remove|set> <nombre> <joueur>"
+unknown-command: "&cCommande inconnue."

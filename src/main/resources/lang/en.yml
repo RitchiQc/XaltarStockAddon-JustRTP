@@ -1,0 +1,37 @@
+# English Messages
+prefix: "&8[&6RTP Stock&8] &r"
+
+# Player commands
+stock-self: "&7You have &e%stock%&7/&e%limit% &7free RTPs."
+stock-other: "&e%player% &7has &e%stock%&7/&e%limit% &7free RTPs."
+give-success: "&7You sent &e%amount% &7RTPs to &e%target%&7."
+give-received: "&e%player% &7sent you &e%amount% &7free RTPs."
+give-not-enough: "&cYou don't have enough free RTPs."
+give-cooldown: "&cYou must wait &e%seconds% &cseconds before sending RTPs again."
+give-self: "&cYou cannot send RTPs to yourself."
+give-invalid-amount: "&cThe amount must be greater than 0."
+give-target-offline: "&cPlayer &e%target% &cis not online."
+give-target-full: "&cPlayer &e%target% &chas reached their RTP limit."
+
+# First join
+first-join: "&aWelcome! You received &e%amount% free RTPs &ato get started."
+
+# RTP used
+rtp-used-free: "&aYou used 1 free RTP. Remaining: &e%remaining%"
+rtp-no-stock: "&cYou have no free RTPs left. Normal cost applies."
+
+# Staff commands
+staff-stock: "&e%player% &7has &e%stock%&7/&e%limit% &7free RTPs."
+staff-add-success: "&7Added &e%amount% &7RTPs to &e%player%&7. New stock: &e%stock%&7/&e%limit%"
+staff-remove-success: "&7Removed &e%amount% &7RTPs from &e%player%&7. New stock: &e%stock%&7/&e%limit%"
+staff-set-success: "&7Set &e%player%&7's stock to &e%amount%&7/&e%limit%"
+staff-target-offline: "&cPlayer &e%player% &cis not online."
+staff-invalid-amount: "&cThe amount must be greater than or equal to 0."
+staff-limit-reached: "&cCannot exceed: &e%player%&c's limit is &e%limit%&c."
+
+# General errors
+no-permission: "&cYou don't have permission to use this command."
+player-only: "&cThis command can only be used by a player."
+usage-give: "&cUsage: /rtpgive <amount> <player>"
+usage-staff: "&cUsage: /rtpstaff <stock|add|remove|set> <amount> <player>"
+unknown-command: "&cUnknown command."

@@ -1,0 +1,81 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Extract version from tag
+        id: get_version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+          echo "Extracted version: $VERSION"
+
+      - name: Update POM version
+        run: |
+          # Update only the project version (first occurrence after artifactId)
+          sed -i '0,/<version>.*<\/version>/{s/<version>.*<\/version>/<version>${{ steps.get_version.outputs.VERSION }}<\/version>/}' pom.xml
+          echo "Updated POM version:"
+          grep -m1 "<version>" pom.xml
+
+      - name: Install local JustRTP dependency
+        run: |
+          mvn install:install-file \
+            -Dfile=libs/justRTP-3.5.1.jar \
+            -DgroupId=eu.kotori \
+            -DartifactId=justRTP \
+            -Dversion=3.5.1 \
+            -Dpackaging=jar
+
+      - name: Build with Maven
+        run: mvn clean package -DskipTests
+
+      - name: Rename JAR with version
+        run: |
+          cp target/XaltarStockAddon-JustRTP-${{ steps.get_version.outputs.VERSION }}.jar target/XaltarStockAddon-JustRTP.jar
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Release ${{ steps.get_version.outputs.VERSION }}
+          body: |
+            ## XaltarStockAddon-JustRTP ${{ steps.get_version.outputs.VERSION }}
+
+            Addon de stock de RTP gratuits pour JustRTP.
+
+            ### Installation
+            1. Placez le JAR dans `/plugins/JustRTP/addons/`
+            2. Redémarrez votre serveur
+
+            ### Commandes
+            - `/rtpstock` - Voir son stock de RTP gratuits
+            - `/rtpgive <nombre> <joueur>` - Envoyer des RTP à un joueur
+            - `/rtpstaff <stock|add|remove|set> <nombre> <joueur>` - Gérer les RTP (admin)
+
+            ### Permissions
+            - `justrtp.stock.use` - Utiliser /rtpstock
+            - `justrtp.stock.give` - Utiliser /rtpgive
+            - `justrtp.stock.admin` - Utiliser /rtpstaff
+          files: |
+            target/XaltarStockAddon-JustRTP.jar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

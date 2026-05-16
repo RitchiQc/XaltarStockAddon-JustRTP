@@ -1,0 +1,5 @@
+name: XaltarStockAddon-JustRTP
+version: ${project.version}
+main: com.ritchiqc.justrtpaddon.XaltarStockAddon
+author: RitchiQc
+description: Addon de stock de RTP gratuits pour JustRTP

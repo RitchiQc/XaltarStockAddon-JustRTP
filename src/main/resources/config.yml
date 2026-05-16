@@ -1,0 +1,18 @@
+# XaltarStockAddon-JustRTP - Configuration
+# Version: ${project.version}
+
+# Langue par defaut (fr ou en)
+language: fr
+
+# Cooldown entre les commandes /rtpgive (en secondes)
+cooldown-seconds: 5
+
+# Nombre de RTP gratuits offerts a la premiere connexion
+first-join-amount: 2
+
+# Limites de stock par permission
+# Le joueur peut avoir plusieurs permissions, la limite la plus elevee sera appliquee
+limits:
+  justrtp.stock.default: 5
+  justrtp.stock.vip: 10
+  justrtp.stock.mvp: 20
