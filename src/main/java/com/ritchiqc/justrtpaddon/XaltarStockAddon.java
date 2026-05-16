@@ -4,6 +4,8 @@ import com.ritchiqc.justrtpaddon.commands.GiveCommand;
 import com.ritchiqc.justrtpaddon.commands.StaffCommand;
 import com.ritchiqc.justrtpaddon.commands.StockCommand;
 import com.ritchiqc.justrtpaddon.config.AddonConfig;
+import com.ritchiqc.justrtpaddon.data.Database;
+import com.ritchiqc.justrtpaddon.data.DatabaseFactory;
 import com.ritchiqc.justrtpaddon.data.StockDataManager;
 import com.ritchiqc.justrtpaddon.listeners.CommandSendListener;
 import com.ritchiqc.justrtpaddon.listeners.JoinListener;
@@ -24,6 +26,7 @@ public class XaltarStockAddon extends JustRTPAddon {
 
     private static XaltarStockAddon instance;
     private AddonConfig addonConfig;
+    private Database database;
     private StockDataManager stockDataManager;
     private MessageUtil messageUtil;
     private CooldownUtil cooldownUtil;
@@ -48,8 +51,11 @@ public class XaltarStockAddon extends JustRTPAddon {
         FileConfiguration messages = configUtil.loadYamlConfig("lang/" + lang + ".yml");
         this.messageUtil = new MessageUtil(messages);
 
+        // Init database
+        this.database = DatabaseFactory.createDatabase(this, addonConfig);
+
         // Init managers
-        this.stockDataManager = new StockDataManager(this, addonConfig);
+        this.stockDataManager = new StockDataManager(this, addonConfig, database);
         this.cooldownUtil = new CooldownUtil(addonConfig.getCooldownSeconds());
 
         // Register commands dynamically
@@ -81,6 +87,9 @@ public class XaltarStockAddon extends JustRTPAddon {
     @Override
     public void onDisable() {
         getLogger().info("Disabling XaltarStockAddon-JustRTP...");
+        if (database != null) {
+            database.disconnect();
+        }
         instance = null;
     }
 

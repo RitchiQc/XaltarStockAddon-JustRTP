@@ -2,11 +2,9 @@ package com.ritchiqc.justrtpaddon.data;
 
 import com.ritchiqc.justrtpaddon.XaltarStockAddon;
 import com.ritchiqc.justrtpaddon.config.AddonConfig;
-import eu.kotori.justRTP.utils.DataManager;
 import org.bukkit.entity.Player;
 
 import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
@@ -14,16 +12,12 @@ public class StockDataManager {
 
     private final XaltarStockAddon addon;
     private final AddonConfig config;
-    private static final String STOCK_PREFIX = "justrtp_addon_stock:";
-    private static final String FIRST_JOIN_PREFIX = "justrtp_addon_firstjoin:";
+    private final Database database;
 
-    public StockDataManager(XaltarStockAddon addon, AddonConfig config) {
+    public StockDataManager(XaltarStockAddon addon, AddonConfig config, Database database) {
         this.addon = addon;
         this.config = config;
-    }
-
-    private DataManager getDataManager() {
-        return addon.getPlugin().getDataManager();
+        this.database = database;
     }
 
     public int getPlayerLimit(Player player) {
@@ -40,12 +34,11 @@ public class StockDataManager {
     }
 
     public CompletableFuture<Integer> getStock(UUID playerId) {
-        return getDataManager().getString(STOCK_PREFIX + playerId.toString())
-                .thenApply(opt -> opt.map(Integer::parseInt).orElse(0));
+        return database.getStock(playerId);
     }
 
     public CompletableFuture<Void> setStock(UUID playerId, int amount) {
-        return getDataManager().setString(STOCK_PREFIX + playerId.toString(), String.valueOf(Math.max(0, amount)));
+        return database.setStock(playerId, amount);
     }
 
     public CompletableFuture<Void> addStock(UUID playerId, int amount) {
@@ -63,12 +56,11 @@ public class StockDataManager {
     }
 
     public CompletableFuture<Boolean> hasFirstJoined(UUID playerId) {
-        return getDataManager().getString(FIRST_JOIN_PREFIX + playerId.toString())
-                .thenApply(Optional::isPresent);
+        return database.hasFirstJoined(playerId);
     }
 
     public CompletableFuture<Void> setFirstJoined(UUID playerId) {
-        return getDataManager().setString(FIRST_JOIN_PREFIX + playerId.toString(), "true");
+        return database.setFirstJoined(playerId);
     }
 
     public CompletableFuture<Integer> getStockSafe(Player player) {

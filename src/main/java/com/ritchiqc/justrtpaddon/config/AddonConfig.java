@@ -16,6 +16,14 @@ public class AddonConfig {
     private long cooldownSeconds;
     private int firstJoinAmount;
     private final Map<String, Integer> limits = new HashMap<>();
+    private String storageType;
+    private String mysqlHost;
+    private int mysqlPort;
+    private String mysqlDatabase;
+    private String mysqlUsername;
+    private String mysqlPassword;
+    private int mysqlPoolSize;
+    private long mysqlConnectionTimeout;
 
     public AddonConfig(XaltarStockAddon addon) {
         this.addon = addon;
@@ -47,6 +55,15 @@ public class AddonConfig {
             limits.put("justrtp.stock.vip", 10);
             limits.put("justrtp.stock.mvp", 20);
         }
+
+        storageType = config.getString("storage.type", "sqlite").toLowerCase();
+        mysqlHost = config.getString("storage.mysql.host", "localhost");
+        mysqlPort = config.getInt("storage.mysql.port", 3306);
+        mysqlDatabase = config.getString("storage.mysql.database", "justrtp");
+        mysqlUsername = config.getString("storage.mysql.username", "root");
+        mysqlPassword = config.getString("storage.mysql.password", "password");
+        mysqlPoolSize = config.getInt("storage.mysql.pool-size", 10);
+        mysqlConnectionTimeout = config.getLong("storage.mysql.connection-timeout", 30000);
     }
 
     public String getLanguage() {
@@ -67,5 +84,37 @@ public class AddonConfig {
 
     public int getLimitForPermission(String permission) {
         return limits.getOrDefault(permission, 5);
+    }
+
+    public String getStorageType() {
+        return storageType;
+    }
+
+    public String getMysqlHost() {
+        return mysqlHost;
+    }
+
+    public int getMysqlPort() {
+        return mysqlPort;
+    }
+
+    public String getMysqlDatabase() {
+        return mysqlDatabase;
+    }
+
+    public String getMysqlUsername() {
+        return mysqlUsername;
+    }
+
+    public String getMysqlPassword() {
+        return mysqlPassword;
+    }
+
+    public int getMysqlPoolSize() {
+        return mysqlPoolSize;
+    }
+
+    public long getMysqlConnectionTimeout() {
+        return mysqlConnectionTimeout;
     }
 }

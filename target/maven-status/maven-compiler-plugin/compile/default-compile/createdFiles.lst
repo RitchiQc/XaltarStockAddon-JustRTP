@@ -1,8 +1,10 @@
+com\ritchiqc\justrtpaddon\data\MySQLDatabase.class
 com\ritchiqc\justrtpaddon\data\StockDataManager.class
 com\ritchiqc\justrtpaddon\listeners\JoinListener.class
 com\ritchiqc\justrtpaddon\placeholder\StockPlaceholderExpansion.class
 com\ritchiqc\justrtpaddon\util\ConfigUtil$1.class
 com\ritchiqc\justrtpaddon\util\ConfigUtil.class
+com\ritchiqc\justrtpaddon\data\SQLiteDatabase.class
 com\ritchiqc\justrtpaddon\util\MessageUtil.class
 com\ritchiqc\justrtpaddon\XaltarStockAddon.class
 com\ritchiqc\justrtpaddon\config\AddonConfig.class
@@ -11,5 +13,7 @@ com\ritchiqc\justrtpaddon\commands\StaffCommand.class
 com\ritchiqc\justrtpaddon\commands\StockCommand.class
 com\ritchiqc\justrtpaddon\util\CommandRegistrar.class
 com\ritchiqc\justrtpaddon\listeners\CommandSendListener.class
+com\ritchiqc\justrtpaddon\data\Database.class
 com\ritchiqc\justrtpaddon\listeners\RTPStockListener.class
 com\ritchiqc\justrtpaddon\commands\GiveCommand.class
+com\ritchiqc\justrtpaddon\data\DatabaseFactory.class

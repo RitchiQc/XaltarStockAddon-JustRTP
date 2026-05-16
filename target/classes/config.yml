@@ -16,3 +16,18 @@ limits:
   justrtp.stock.default: 5
   justrtp.stock.vip: 10
   justrtp.stock.mvp: 20
+
+# Configuration de la base de donnees
+# Types disponibles: sqlite, mysql
+storage:
+  type: sqlite
+  # Parametres MySQL (ignores si type = sqlite)
+  mysql:
+    host: localhost
+    port: 3306
+    database: justrtp
+    username: root
+    password: password
+    # Parametres de pool HikariCP
+    pool-size: 10
+    connection-timeout: 30000
